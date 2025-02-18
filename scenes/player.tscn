@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://jsmwmcqei66x"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_irmrr"]
+[ext_resource type="Texture2D" uid="uid://bi4fgpggqflwh" path="res://assets/sick_dude_temp.webp" id="1_vosfw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_raoyy"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn3uu"]
+bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jp3kn"]
+radius = 27.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5301q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vosfw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pivuu"]
+radius = 29.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_irmrr")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -32.0
+offset_top = -43.0
+offset_right = 32.0
+offset_bottom = -20.0
+scale = Vector2(1, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_styles/background = SubResource("StyleBoxFlat_raoyy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fn3uu")
+value = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jp3kn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_5301q")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_pivuu")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

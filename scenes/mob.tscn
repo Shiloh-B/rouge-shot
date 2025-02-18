@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwhsw6dywiniy"]
+
+[ext_resource type="Script" path="res://scripts/mob.gd" id="1_e0rpu"]
+[ext_resource type="Texture2D" uid="uid://8ch5pjxxwtq8" path="res://assets/cool_guy.png" id="2_6xqi0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2vtoy"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5x4fm"]
+bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gdlxs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6xqi0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u2rmp"]
+radius = 45.3982
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ydf41"]
+radius = 351.115
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_37ohc"]
+radius = 45.2769
+
+[node name="Mob" type="CharacterBody2D" groups=["Mob"]]
+script = ExtResource("1_e0rpu")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -37.0
+offset_top = -43.0
+offset_right = 27.0
+offset_bottom = -20.0
+scale = Vector2(1, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_styles/background = SubResource("StyleBoxFlat_2vtoy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5x4fm")
+value = 100.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_gdlxs")
+
+[node name="MobRange" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u2rmp")
+
+[node name="AgroArea" type="Area2D" parent="." groups=["Mob"]]
+
+[node name="AgroRange" type="CollisionShape2D" parent="AgroArea"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_ydf41")
+
+[node name="DamageRange" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageRange"]
+shape = SubResource("CircleShape2D_37ohc")
+
+[connection signal="area_entered" from="AgroArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="AgroArea" to="." method="_on_agro_area_area_entered"]
+[connection signal="area_exited" from="AgroArea" to="." method="_on_agro_area_area_exited"]
+[connection signal="body_entered" from="AgroArea" to="." method="_on_agro_area_body_entered"]
+[connection signal="body_exited" from="AgroArea" to="." method="_on_agro_area_body_exited"]
+[connection signal="area_entered" from="DamageRange" to="." method="_on_damage_range_area_entered"]
+[connection signal="body_entered" from="DamageRange" to="." method="_on_damage_range_body_entered"]
+[connection signal="body_shape_entered" from="DamageRange" to="." method="_on_damage_range_body_shape_entered"]

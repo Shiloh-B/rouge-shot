@@ -1,3 +1,16 @@
-[gd_scene format=3 uid="uid://cbkxrns5etah4"]
+[gd_scene load_steps=4 format=3 uid="uid://cbkxrns5etah4"]
+
+[ext_resource type="PackedScene" uid="uid://jsmwmcqei66x" path="res://scenes/player.tscn" id="1_t43lg"]
+[ext_resource type="PackedScene" uid="uid://dwhsw6dywiniy" path="res://scenes/mob.tscn" id="2_tvwia"]
+[ext_resource type="PackedScene" uid="uid://tldhko8ms8vo" path="res://scenes/upgrade.tscn" id="3_xxrb1"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_t43lg")]
+position = Vector2(38, 41)
+
+[node name="Mob" parent="." instance=ExtResource("2_tvwia")]
+position = Vector2(901, 372)
+
+[node name="Upgrade" parent="." instance=ExtResource("3_xxrb1")]
+position = Vector2(188, 243)

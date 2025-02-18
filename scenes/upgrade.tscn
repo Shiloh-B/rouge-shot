@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://tldhko8ms8vo"]
+
+[ext_resource type="Texture2D" uid="uid://c56b5ijgn4ocp" path="res://assets/pixel_art_chip_small.png" id="1_hmwvk"]
+[ext_resource type="Script" path="res://scripts/upgrade.gd" id="1_kyto2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u632p"]
+radius = 13.1529
+
+[node name="Upgrade" type="Area2D" groups=["Upgrade"]]
+script = ExtResource("1_kyto2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.75, 4.75)
+scale = Vector2(1.02318, 0.931655)
+texture = ExtResource("1_hmwvk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u632p")

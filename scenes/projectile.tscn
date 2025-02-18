@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg848ve6kyv0x"]
+
+[ext_resource type="Texture2D" uid="uid://cirer2oe7w1v2" path="res://assets/roulette_ball.png" id="1_7qdjq"]
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_hpgso"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xlndr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7qdjq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1k2gu"]
+radius = 5.0
+
+[node name="Projectile" type="Area2D" groups=["Projectile"]]
+script = ExtResource("1_hpgso")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.025, 0.025)
+sprite_frames = SubResource("SpriteFrames_xlndr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1k2gu")
