@@ -1,10 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://bcs5nabqqa7xk"]
 
 [ext_resource type="TileSet" uid="uid://ceh78kmwifrn0" path="res://assets/tilesets/map.tres" id="1_837y0"]
-[ext_resource type="Script" path="res://scenes/map.gd" id="1_h237l"]
+[ext_resource type="Script" path="res://scripts/map.gd" id="1_h237l"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_h237l")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(6, 6)
+tile_map_data = PackedByteArray(0, 0, 216, 0, 155, 0, 0, 0, 3, 0, 3, 0, 0, 0)
 tile_set = ExtResource("1_837y0")

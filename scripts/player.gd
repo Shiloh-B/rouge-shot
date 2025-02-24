@@ -36,7 +36,7 @@ func _process(delta):
 		velocity = velocity.normalized() * speed;
 		
 	position += velocity * delta;
-	position = position.clamp(Vector2.ZERO, screenSize);
+	#position = position.clamp(Vector2.ZERO, screenSize);
 	
 	projectileCooldown -= delta;
 	damageCooldown -= delta;

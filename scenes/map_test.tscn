@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuj8m64plmjyj"]
+
+[ext_resource type="PackedScene" uid="uid://bcs5nabqqa7xk" path="res://scenes/map.tscn" id="1_0mrcp"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="2_cgokh"]
+
+[node name="MapTest" type="Node2D"]
+
+[node name="Map" parent="." instance=ExtResource("1_0mrcp")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1072, 600)
+zoom = Vector2(0.2, 0.2)
+script = ExtResource("2_cgokh")
