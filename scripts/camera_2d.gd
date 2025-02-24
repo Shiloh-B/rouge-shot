@@ -1,6 +1,6 @@
 extends Camera2D
 
-const CAMERA_SPEED = 3000;
+const CAMERA_SPEED = 4500;
 
 func _process(delta):
 	if Input.is_key_pressed(KEY_W):
